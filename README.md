@@ -1,1 +1,2 @@
-# angular-dec-2019
+this projects is for practice pursposes
+s
