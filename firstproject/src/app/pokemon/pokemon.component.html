@@ -1,0 +1,17 @@
+<div class="mainPokemonContainer">
+    <div *ngFor="let pokemon of pokemons" class="pokemonContainer  textFormat">
+        <div class="pokemonImg">
+            <img src="{{pokemon.sprites.front_default}}">
+            <div class="pokemonName alignCenter">{{pokemon.name | titlecase}}</div>
+        </div>
+        <div>
+            <div class="pokemonTypeContainer">
+                <label style="color:white"> Type:</label>
+               <label *ngFor="let type of pokemon.types" class="pokemonType"
+                    [style.background-color]="descriptioncolors[type.type.name]"> {{type.type.name | titlecase }}
+                    </label> 
+               </div>
+            <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
+        </div>
+    </div>    
+</div>
