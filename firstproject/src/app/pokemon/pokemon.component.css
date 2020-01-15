@@ -1,6 +1,6 @@
 .mainPokemonContainer{
     margin-top: 20px;
-    width:990px;
+    width:1600px;
     height:auto;
     border:1px solid grey;
     border-radius: 12px;
@@ -10,8 +10,8 @@
 }
 .pokemonContainer{
     
-    width: 19% ;
-    height:10%;
+    width: 200px;
+    height:360px;
     margin:2%;
     display:inline-block;
     background-color: #212121;
