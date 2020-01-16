@@ -35,9 +35,11 @@
     text-align: center;    
 }
 .pokemonImg{
-    width:70%;
-    height:85%;
-    margin: 10% 0 5% 22% ;
+    width:80px;
+    height:70px;
+    margin-left:70px;
+    margin-top:15px;
+    margin-bottom: 10px;
 
 }
 .pokemonTypeContainer{
