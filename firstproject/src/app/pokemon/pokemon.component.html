@@ -5,22 +5,16 @@
             <div class="pokemonContainer  textFormat" 
             (mouseenter)="toggle(pokemon)" (mouseleave)="toggle(pokemon)"
                 [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
-                <carousel>
+                <carousel [showIndicators]="false">
                     <slide>
-                        <div >
-                            <img class="pokemonImg" src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
-                            <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div>
-                        </div>
-                        <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
+                        <img class="pokemonImg" src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
                     </slide>
                     <slide>
-                        <div >
-                            <img class="pokemonImg" src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
-                            <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div>
-                        </div>
-                        <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
+                        <img class="pokemonImg" src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
                     </slide>
                 </carousel>
+                <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div>
+                <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
                 <div class="pokemonTypeContainer">
                     <label *ngFor="let type of pokemon.types" class="pokemonType"
                         [style.background-color]="descriptioncolors[type.type.name]"> {{type.type.name | titlecase }}
