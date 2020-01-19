@@ -1,12 +1,22 @@
 .mainPokemonContainer{
-    margin-top: 20px;
+    margin-top: -20px;
     width:1600px;
     height:auto;
-    border:1px solid grey;
     border-radius: 12px;
-    max-height: 900px;
-    background-color:#ecf0f1 ;
-       
+    background-color:rgb(226, 229, 224, .6) ;
+    display: block;
+
+}
+.logo{
+    width:350px;
+    height:150px;
+}
+.pokemonFlying{
+
+    width:70px;
+    height:60px;
+    opacity: 1;
+
 }
 .pokemonContainer{
     
@@ -59,4 +69,27 @@
     font-weight: bold;
     border-radius: 5px;
     margin-left: 5px;
+}
+
+.containerByGeneration{
+    max-height: 600px;
+   float: right;
+}
+.containerMenu{
+    width:20%;
+    background-color: rgba(33, 33, 33);
+    height: 600px;
+    float:left;
+}
+.my-scrollbars{
+
+    --scrollbar-color: transparent;
+    --scrollbar-container-color: transparent;
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb-hover-color: white;
+    --scrollbar-border-radius: 4px;
+    --scrollbar-size: 13px;
+    --scrollbar-padding: 8px;
+    --scroll-view-margin: 12;
+    --scroll-view-color: transparent;
 }

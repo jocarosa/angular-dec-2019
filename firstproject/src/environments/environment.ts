@@ -39,9 +39,9 @@ types:[
   }
 ]
 }, 
-{name:'tentacruel',
-sprites:{front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png"},
-description:'Pikachu is a mouse pokemon fsdfsd sdsdfas asdfasd asdfas asdfasdasdsad sadf asdfasd',
+{name:'pichu',
+sprites:{front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png"},
+description:'Pichu is a mouse pokemon fsdfsd sdsdfas asdfasd asdfas asdfasdasdsad sadf asdfasd',
 types:[
   {
     type:{

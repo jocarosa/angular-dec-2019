@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import {CarouselModule} from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
 
-import { PokemonComponent } from './pokemon.component';
+import { CarouselModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+
+import { PokemonComponent } from '@pokemon/pokemon.component';
+import { TabComponentComponent } from '@pokemon/tab-component/tab-component.component'
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 const routes: Routes = [{ path: '', component: PokemonComponent }];
 
 @NgModule({
     declarations: [
-        PokemonComponent
-    ],
+        PokemonComponent ,
+        TabComponentComponent  
+     ],
     imports: [
         CommonModule,
+        FormsModule,
         CarouselModule.forRoot(),
-        RouterModule.forChild(routes),
-        
+        AccordionModule.forRoot(),
+        RouterModule.forChild(routes) ,
+        NgScrollbarModule       
     ],
     exports:[RouterModule],
     bootstrap: [PokemonComponent]

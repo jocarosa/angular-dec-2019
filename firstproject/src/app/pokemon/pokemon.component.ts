@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {descriptioncolors,pokemonsFakeData} from '../../environments/environment';
-import {trigger,state, style,transition,animate} from '@angular/animations';
+import { descriptioncolors,pokemonsFakeData } from '@env/environment';
+import { trigger,state, style,transition,animate,query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon',
@@ -8,20 +8,38 @@ import {trigger,state, style,transition,animate} from '@angular/animations';
   styleUrls: ['./pokemon.component.css'],
   animations:[
     trigger('pokemonContainerAnimate',[
-      state("out",style({
-          transform:'scale(1)',
-          
-      })),
-      state('over',style({
-        transform:'scale(1.1)'
-      })),
-      transition('over=>out',animate('1000ms')),
-      transition('over=>out',animate('1000ms'))
+        state("out",style({
+            transform:'scale(1)',
+            
+        })),
+        state('over',style({
+          transform:'scale(1.1)'
+        })),
+        transition('over=>out',animate('1000ms')),
     ]),
-   
+    
+    trigger(
+      'query', [
+        transition(
+          '* => start', [
+            query('.pokemonContainer', [
+              stagger(130,[]),
+              style({
+                opacity:1,
+                transform:('scale(1.4)')
+              }),
+              animate('1.5s', 
+                style({
+                  opacity:1,
+                  transform:('scale(1)')
+                }))
+            ]),
+        ]),
+      ]),
+
   ]
 })
-
+    
 export class PokemonComponent implements OnInit {
 
   descriptioncolors = descriptioncolors
@@ -29,10 +47,14 @@ export class PokemonComponent implements OnInit {
   images: any;
   pokemonAnimate= {}
   pokemonImageSrc={};
-  constructor() { }
-
+  animateOnLoad;
+  showAnimatedPokemons:boolean;
+  constructor() { 
+    setTimeout(() => {
+      this.animateOnLoad = 'start'
+    },0);
+  }  
   ngOnInit() {
-//    this.images = [944, 1011, 984].map((current) => `https://picsum.photos/id/${current}/900/500`);
   }
   toggle(pokemon){
     
@@ -46,6 +68,4 @@ export class PokemonComponent implements OnInit {
       
     }
   }
-
-
 }

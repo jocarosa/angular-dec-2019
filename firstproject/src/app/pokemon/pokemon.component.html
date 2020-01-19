@@ -1,25 +1,38 @@
 <!--- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <div class="containerLogo">
+        <img class="logo" src="../../assets/img/pokemon-generations.png">
+    </div>
+    <marquee direction=left scrolldelay=150><img class="pokemonFlying" src="../../assets/img/mew.png"></marquee>
+    <marquee style="margin-bottom: -290px; opacity: 0.2;" direction=right scrolldelay=150><img class="pokemonFlying" src="../../assets/img/moltres.png"></marquee>
     <div class="mainPokemonContainer">
-        <ng-container *ngFor="let pokemon of pokemons">
-            <div class="pokemonContainer  textFormat" 
-            (mouseenter)="toggle(pokemon)" (mouseleave)="toggle(pokemon)"
-                [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
-                <carousel [showIndicators]="false">
-                    <slide>
-                        <img class="pokemonImg" src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
-                    </slide>
-                    <slide>
-                        <img class="pokemonImg" src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
-                    </slide>
-                </carousel>
-                <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div>
-                <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
-                <div class="pokemonTypeContainer">
-                    <label *ngFor="let type of pokemon.types" class="pokemonType"
-                        [style.background-color]="descriptioncolors[type.type.name]"> {{type.type.name | titlecase }}
-                    </label>
+        <div class="containerMenu">
+            <menu-tab-component></menu-tab-component>
+        </div>
+        <ng-scrollbar class="my-scrollbars">
+            <div class="containerByGeneration">
+            <div [@query]="animateOnLoad">
+                    <div *ngFor="let pokemon of pokemons" class="pokemonContainer  textFormat" (mouseenter)="toggle(pokemon)"
+                        (mouseleave)="toggle(pokemon)" [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
+                        <carousel [showIndicators]="false">
+                            <slide>
+                                <img class="pokemonImg"
+                                    src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
+                            </slide>
+                            <slide>
+                                <img class="pokemonImg"
+                                    src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprites.front_default :  pokemonImageSrc[pokemon.name] }}">
+                            </slide>
+                        </carousel>
+                        <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div>
+                        <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
+                        <div class="pokemonTypeContainer">
+                            <label *ngFor="let type of pokemon.types" class="pokemonType"
+                                [style.background-color]="descriptioncolors[type.type.name]"> {{type.type.name | titlecase }}
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </ng-container>
+        </ng-scrollbar>
     </div>

@@ -4,6 +4,11 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+      "paths": {
+        "@pokemon/*": ["./src/app/pokemon/*"],
+        "@app/*": ["./src/app/*"],
+        "@env/*": ["./src/environments/*"]
+      },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

@@ -1,4 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     background-image: url("assets/img/bk.png"); 
+    background-repeat: repeat-x;
+}
+
+.card.customClass,
+.card.customClass .card-header,
+.panel.customClass {
+  background-color: rgb(33, 33, 33,1.6);
+ 
+  border-bottom: 0;
+  text-align: center;
+  font-size: 1.2em;
+  color: white;
+}
+.panel.customClass button{
+    color:white;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-bottom: 0;
+}
+
+.panel.customClass a {
+  text-decoration: none;
+  color: #fff;
 }
