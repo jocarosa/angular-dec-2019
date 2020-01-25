@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 
 import { CarouselModule } from 'ngx-bootstrap';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
+
 
 import { PokemonComponent } from '@pokemon/pokemon.component';
 import { TabComponentComponent } from '@pokemon/tab-component/tab-component.component'
@@ -19,11 +18,10 @@ const routes: Routes = [{ path: '', component: PokemonComponent }];
      ],
     imports: [
         CommonModule,
-        FormsModule,
+        NgScrollbarModule,
         CarouselModule.forRoot(),
-        AccordionModule.forRoot(),
-        RouterModule.forChild(routes) ,
-        NgScrollbarModule       
+        RouterModule.forChild(routes) 
+               
     ],
     exports:[RouterModule],
     bootstrap: [PokemonComponent]

@@ -13,6 +13,32 @@ export const descriptioncolors = {
 }
 export const pokemonsFakeData =[{
   name:'pikachu',
+  front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+  description:'Pikachu is a mouse pokemon',
+  evolutions:[
+    {
+      name:"raichu",
+      front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
+      description:'Pikachu is a mouse pokemon'
+    },
+    {
+      name:"pichu",
+      front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png",
+      description:'pichu is a mouse pokemon'
+    }
+  ],
+  types:[
+    {
+      type:{
+        name:"electric"
+      }
+    }
+  ]
+}, 
+];
+
+export const pokemonsFakeDatas =[{
+  name:'pikachu',
   sprites:{front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"},
   description:'Pikachu is a mouse pokemon',
   types:[

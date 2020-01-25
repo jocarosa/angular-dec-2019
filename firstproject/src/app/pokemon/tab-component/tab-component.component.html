@@ -1,14 +1,18 @@
-<accordion [isAnimated]="true">
-    <accordion-group
-    [panelClass]="customClass" 
-    heading="All Generations">
-      This content is straight in the template.
-    </accordion-group
-    >
-    <accordion-group 
-    [panelClass]="customClass" 
-    heading="Battle!!">
-      <p>Some content</p>
-    </accordion-group>
-  </accordion>
-
+<div id="tabContainer">
+  <div (click)="active()">Generations</div>
+  <div id="containerLinksGenen" 
+  [@collapse]="collapse_1">
+    <ul>      
+       <li><span><img src="{{getSpreadPokemonByNo(01)}}"></span> Generation 1</li>
+       <li><span><img src="{{getSpreadPokemonByNo(152)}}"></span> Generation 2</li>
+       <li><span><img src="{{getSpreadPokemonByNo(255)}}"></span> Generation 3</li>
+       <li><span><img src="{{getSpreadPokemonByNo(390)}}"></span> Generation 4</li>
+       <li><span><img src="{{getSpreadPokemonByNo(494)}}"></span> Generation 5</li>
+       <li><span><img src="{{getSpreadPokemonByNo(650)}}"></span> Generation 6</li>
+       <li><span><img src="{{getSpreadPokemonByNo(725)}}"></span> Generation 7</li>
+     </ul>
+  </div>
+<!-- <div style="background-image: url('../../assets/img/combat.png'); 
+height:150px;background-color: black; background-repeat: no-repeat;">
+ </div> -->
+</div>

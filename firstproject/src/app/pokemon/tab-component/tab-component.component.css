@@ -1,0 +1,30 @@
+#tabContainer{
+    width: 20%;
+    background-color: rgba(33, 33, 33, 0.8);
+    height: 600px;
+    float: left;
+}
+#tabContainer div{
+    border-left:8px solid yellow;
+    text-align: center;
+    color: white;
+    font-size: 2.0em;
+    padding:10px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#tabContainer ul li{
+    font-size: 18px;
+    list-style: none;
+    margin-left: -25px;
+    padding:0px;
+    color:yellow
+    
+}
+#containerLinksGenen{
+    border-left: 0 !important;
+}
+
+#containerLinksGenen  img{
+    width:53px;
+    height:53px;
+}

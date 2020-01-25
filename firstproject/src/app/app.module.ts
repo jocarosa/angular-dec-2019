@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 
+import {PokemonService} from '@pokemon/pokemon.service';
+
 @NgModule({
   declarations: [
     AppComponent        
@@ -14,7 +16,7 @@ import { AppComponent } from '@app/app.component';
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

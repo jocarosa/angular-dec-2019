@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { descriptioncolors,pokemonsFakeData } from '@env/environment';
-import { trigger,state, style,transition,animate,query, stagger } from '@angular/animations';
+import { trigger,state, style,transition,animate,query, stagger }
+ from '@angular/animations';
+import {rubberBandAnimation,fadeInRightAnimation} from 'angular-animations';
 
 @Component({
   selector: 'app-pokemon',
@@ -37,6 +39,7 @@ import { trigger,state, style,transition,animate,query, stagger } from '@angular
         ]),
       ]),
 
+      rubberBandAnimation()
   ]
 })
     
@@ -48,18 +51,23 @@ export class PokemonComponent implements OnInit {
   pokemonAnimate= {}
   pokemonImageSrc={};
   animateOnLoad;
+  animationState = false;
   showAnimatedPokemons:boolean;
   constructor() { 
     setTimeout(() => {
-      this.animateOnLoad = 'start'
+      this.animateOnLoad = 'start' //animation for all pokemons on load
     },0);
   }  
   ngOnInit() {
+    this.animationState = false;
+    setTimeout(() => {
+      this.animationState=true;
+    }, 1);
   }
   toggle(pokemon){
     
     if(this.pokemonAnimate[pokemon.name] == "over"){
-      this.pokemonImageSrc[pokemon.name] = pokemon.sprites.front_default;
+      this.pokemonImageSrc[pokemon.name] = pokemon.front_default;
       this.pokemonAnimate[pokemon.name] = "out";
     
     }else{
