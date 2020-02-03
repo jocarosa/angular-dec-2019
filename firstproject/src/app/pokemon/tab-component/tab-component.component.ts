@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import {collapseAnimation} from 'angular-animations';
+import {GENERATION} from '@env/environment'
 
 import {PokemonService} from '@pokemon/pokemon.service';
 
@@ -16,15 +17,18 @@ export class TabComponentComponent implements OnInit {
   constructor(private pokemonService:PokemonService) { }
   linksGenerations;
   collapse_1=false;
-
+  generation = GENERATION;
+  @Output() findGeneration = new EventEmitter<any>();
 
   ngOnInit() {
-    this.linksGenerations = this.getAllGenerationsLinks(8);
+    //his.linksGenerations = this.getAllGenerationsLinks(,8);
 
   }
+  find(generation,startFrom){
+    this.findGeneration.emit([generation,startFrom]);
+  }
 
-
-  getAllGenerationsLinks(noGenerations){
+  /*getAllGenerationsLinks(generation,noGenerations){
     let links= {};
     let all = [];
     for(let i=1;i<=noGenerations;i++){
@@ -34,17 +38,17 @@ export class TabComponentComponent implements OnInit {
         links = {};
     }
     return all;
-  }
+  }*/
 
-  active(){
+  /*active(){
     console.log("llegue");
     setTimeout(() => {
       this.collapse_1 = !this.collapse_1;
     }, 1);
-  }
+  }*/
 
-  getSpreadPokemonByNo(no:number){
-    return this.pokemonService.getSpreadPokemonByNo(no);
+  getSpritePokemonByNo(no:string){
+    return this.pokemonService.getSpritePokemonByNo(no);
   }
 
 }

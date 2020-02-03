@@ -12,7 +12,7 @@
     padding:10px; 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-#tabContainer ul li{
+#tabContainer nav li{
     font-size: 18px;
     list-style: none;
     margin-left: -25px;
@@ -20,11 +20,19 @@
     color:yellow
     
 }
+#tabContainer nav a:hover{
+  text-decoration: none;
+    
+}
 #containerLinksGenen{
     border-left: 0 !important;
 }
 
 #containerLinksGenen  img{
-    width:53px;
-    height:53px;
+    width:63px;
+    height:63px;
+}
+
+.active{
+    background-color: #212121;
 }

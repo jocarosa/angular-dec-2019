@@ -1,16 +1,15 @@
 <div id="tabContainer">
   <div (click)="active()">Generations</div>
-  <div id="containerLinksGenen" 
-  [@collapse]="collapse_1">
-    <ul>      
-       <li><span><img src="{{getSpreadPokemonByNo(01)}}"></span> Generation 1</li>
-       <li><span><img src="{{getSpreadPokemonByNo(152)}}"></span> Generation 2</li>
-       <li><span><img src="{{getSpreadPokemonByNo(255)}}"></span> Generation 3</li>
-       <li><span><img src="{{getSpreadPokemonByNo(390)}}"></span> Generation 4</li>
-       <li><span><img src="{{getSpreadPokemonByNo(494)}}"></span> Generation 5</li>
-       <li><span><img src="{{getSpreadPokemonByNo(650)}}"></span> Generation 6</li>
-       <li><span><img src="{{getSpreadPokemonByNo(725)}}"></span> Generation 7</li>
-     </ul>
+  <div id="containerLinksGenen">
+    <nav>      
+       <a (click)="find(generation.ONE,1)"routerLink="/pokemon/generation/1" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('1')}}"></span> Generation 1</li></a>
+       <a (click)="find(generation.TWO,152)" routerLink="/pokemon/generation/2" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('152')}}"></span> Generation 2</li></a>
+       <a (click)="find(generation.THREE,252)"routerLink="/pokemon/generation/3" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('255')}}"></span> Generation 3</li></a>
+       <a (click)="find(generation.FOUR,387)"routerLink="/pokemon/generation/4" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('390')}}"></span> Generation 4</li></a>
+       <a (click)="find(generation.FIVE,494)"routerLink="/pokemon/generation/5" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('494')}}"></span> Generation 5</li></a>
+       <a (click)="find(generation.SIX,650)"routerLink="/pokemon/generation/6" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('650')}}"></span> Generation 6</li></a>
+       <a (click)="find(generation.SEVEN,722)"routerLink="/pokemon/generation/7" ><li routerLinkActive="active"><span><img src="{{getSpritePokemonByNo('725')}}"></span> Generation 7</li></a>
+    </nav>
   </div>
 <!-- <div style="background-image: url('../../assets/img/combat.png'); 
 height:150px;background-color: black; background-repeat: no-repeat;">
