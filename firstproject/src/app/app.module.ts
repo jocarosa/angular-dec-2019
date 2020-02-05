@@ -7,16 +7,20 @@ import { AppComponent } from '@app/app.component';
 
 import {PokemonService} from '@pokemon/pokemon.service';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { EvolutionModalComponent } from './pokemon/evolution-modal/evolution-modal.component';
  
 @NgModule({
   declarations: [
-    AppComponent        
+    AppComponent,
+    EvolutionModalComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    PaginationModule.forRoot()
   ],
   providers: [PokemonService,HttpClient],
   bootstrap: [AppComponent]

@@ -95,3 +95,9 @@
     width:10%;
     height:10%;
 }
+
+.containerPaginator{
+    float:left;
+    margin-left: 40%;
+    width:40%;
+}

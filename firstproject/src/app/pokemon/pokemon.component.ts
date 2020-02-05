@@ -1,11 +1,11 @@
-import { Component, OnInit,Output ,EventEmitter} from '@angular/core';
+import { Component, OnInit,Output,EventEmitter} from '@angular/core';
 import {PokemonService} from '@pokemon/pokemon.service';
 import { descriptioncolors,pokemonsFakeData } from '@env/environment';
 import { trigger,state, style,transition,animate,query, stagger }
  from '@angular/animations';
 import {rubberBandAnimation} from 'angular-animations';
 import{GENERATION} from '@env/environment';
-import { Observable, forkJoin} from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 
 
@@ -59,6 +59,8 @@ export class PokemonComponent implements OnInit {
   animationState = false;
   showAnimatedPokemons:boolean;
    pikachuLoading;
+  genera:any;
+   //@Output() genera = new EventEmitter<any>();;
  //@Output() findPokemonsByGenerationAndOffset = new EventEmitter();
 
   constructor(private pokemonService: PokemonService) { 
@@ -68,7 +70,9 @@ export class PokemonComponent implements OnInit {
   }  
   ngOnInit() {
     
-  
+    this.genera =  {
+      start:1,end:150
+    };
   
      //this.findPokemonsByGenerationAndOffset(GENERATION.ONE,1)
     
@@ -86,18 +90,26 @@ export class PokemonComponent implements OnInit {
       
     }
   }
- 
-  findPokemonsByGenerationAndOffset(generacion) {
+  startAnimation(){
     this.animationState = false;
-     this.pikachuLoading=true;
     setTimeout(() => {
       this.animationState=true;
     }, 1);
-    this.pokemons=[];
-    let offset = generacion[1];
-    const generation =generacion[0];
-   let allPokemonData = [];
-   for (let i = 1; i < 13; i++) {
+  }
+
+  findPokemonsByGenerationAndOffset(generacion) {
+    if(generacion.tab){
+      this.genera =  generacion;
+    }
+    
+     this.startAnimation();
+    
+     this.pikachuLoading=true;
+     this.pokemons=[];
+     let offset = generacion.start;
+     let allPokemonData = [];
+     
+   for (let i = 1; i < 11; i++) {
       allPokemonData.push(this.getPokemonDataByNumber(offset));
       offset++;
     }
@@ -111,12 +123,13 @@ export class PokemonComponent implements OnInit {
     }),err=>console.log(err);
     
   }
+
 private getAllPokemons(){
   return this.pokemons;
 }
-private setPokemosChain(dataByPokemon){
+/*private setPokemosChain(dataByPokemon){
  
-  this.pokemons[dataByPokemon[1].name]["chain"]=[];
+  //this.pokemons[dataByPokemon[1].name]["chain"]=[];
   dataByPokemon[2].map(chainData=>{
     let pokemonOfChain;
     if(this.thisPokemonExist(chainData[0]["name"])){
@@ -128,7 +141,7 @@ private setPokemosChain(dataByPokemon){
     this.pokemons[dataByPokemon[1].name]["chain"].push(pokemonOfChain);
   })
   
-}
+}*/
  private thisPokemonExist(name){
    
     return this.pokemons[name] != undefined;

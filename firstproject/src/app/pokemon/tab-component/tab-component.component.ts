@@ -18,16 +18,18 @@ export class TabComponentComponent implements OnInit {
   linksGenerations;
   collapse_1=false;
   generation = GENERATION;
+
   @Output() findGeneration = new EventEmitter<any>();
 
   ngOnInit() {
     //his.linksGenerations = this.getAllGenerationsLinks(,8);
 
   }
-  find(generation,startFrom){
-    this.findGeneration.emit([generation,startFrom]);
+  find(generation){
+    generation["tab"]=true;
+    this.findGeneration.emit(generation);
   }
-
+ 
   /*getAllGenerationsLinks(generation,noGenerations){
     let links= {};
     let all = [];

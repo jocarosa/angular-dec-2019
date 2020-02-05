@@ -2,24 +2,35 @@ export const environment = {
   production: false
 };
 export const GENERATION ={
-  ONE:"generation-i",
-  TWO:"generation-ii",
-  THREE:"generation-iii",
-  FOUR:"generation-iv",
-  FIVE:"generation-v",
-  SIX:"generation-vi",
-  SEVEN:"generation-vii"
+  ONE:{
+    "start":1,
+    "end": 151
+  },
+  TWO:{
+    "start":152,
+    "end": 251
+  },
+  THREE:{
+    "start":252,
+    "end": 386
+  },
+  FOUR:{
+    "start":387,
+    "end": 493
+  },
+  FIVE:{
+    "start":494,
+    "end": 649
+  },
+  SIX:{
+    "start":650,
+    "end": 721
+  },
+  SEVEN:{
+    "start":722,
+    "end": 752
+  }
 }
-
-/*export const LIMITBYGENERATION = {
-  "generation-i":151,
-  "generation-ii":248,
-  "generation-iii":376,
-  "generation-iv":478,
-  "generation-v":637,
-  "generation-vi":721,
-  "generation-vii":807,
-}*/
 
 export const baseUrlApi = "https://pokeapi.co/api/v2";
 export const descriptioncolors = {
@@ -37,7 +48,11 @@ export const descriptioncolors = {
   fighting:"#6F1E51",
   psychic:"#D980FA",
   ground:"#EAB543",
-  ghost:"#574b90"
+  ghost:"#574b90",
+  rock:"#f7f1e3",
+  steel:"#d1ccc0",
+  ice:"#ffffff"
+
 }
 export const pokemonsFakeData =[{
   name:'pikachu',

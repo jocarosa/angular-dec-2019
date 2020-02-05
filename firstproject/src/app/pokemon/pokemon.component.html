@@ -1,10 +1,13 @@
 <!--- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <div class="containerLogo">
         <img [@rubberBand]="animationState" class="logo" src="../../assets/img/pokemon-generations.png">
     </div>
     <marquee direction=left scrolldelay=150><img class="pokemonFlying" src="../../assets/img/mew.png"></marquee>
-    <marquee style="margin-bottom: -290px; opacity: 0.2;" direction=right scrolldelay=150><img class="pokemonFlying" src="../../assets/img/moltres.png"></marquee>
+    <marquee style="margin-bottom: -290px; float:left;opacity: 0.9;" direction=right scrolldelay=150><img class="pokemonFlying" src="../../assets/img/moltres.png"></marquee>
+    <div class="containerPaginator">
+        <app-paginator-pokemon [generac]="genera" (next)="findPokemonsByGenerationAndOffset($event)" ></app-paginator-pokemon>
+    </div>
     <div class="mainPokemonContainer">
         <menu-tab-component (findGeneration)="findPokemonsByGenerationAndOffset($event)" ></menu-tab-component>
         <img class="pikachuLoadStyle" *ngIf="pikachuLoading" src="../../assets/img/loading.gif">
@@ -17,14 +20,6 @@
                                         src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprite :  pokemonImageSrc[pokemon.name] }}">
                                         <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div> 
                                         <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
-                                <!-- <slide (mouseenter)="toggle(pokemonC)" (mouseleave)="toggle(pokemonC)" *ngFor="let pokemonC of pokemon.chain">
-                                    <img class="pokemonImg"
-                                        src="{{ pokemonImageSrc[pokemonC.name] = (pokemonImageSrc[pokemonC.name]==null) ? pokemonC.sprite :  pokemonImageSrc[pokemonC.name] }}">
-                                    <div class="pokemonName alignCenter"> <span style="color:blueviolet">Evolves to:</span> {{pokemonC.name | titlecase}} </div> 
-                                    <div class="pokemonDescription alignCenter">{{pokemonC.description}}</div>
-                                </slide>
-                           -->
-                            
                             <div class="pokemonTypeContainer">
                                 <label *ngFor="let type of pokemon.types" class="pokemonType"
                                     [style.background-color]="descriptioncolors[type]"> {{type | titlecase }}
