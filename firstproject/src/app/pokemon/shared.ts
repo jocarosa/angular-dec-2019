@@ -36,3 +36,25 @@ export function parseDataPokemon(pokeData) {
         }
      }
    }
+
+   export const descriptioncolors = {
+    electric:"#fed330",
+    poison:"#8854d0",
+    fire:"#eb3b5a",
+    water:"#2d98da",
+    normal:"#ffb8b8",
+    dragon:"#4b4b4b",
+    bug:"#6F1E51",
+    grass:"#badc58",
+    flying:"#ffbe76",
+    fairy:"yellow",
+    dark:"#264348",
+    fighting:"#6F1E51",
+    psychic:"#D980FA",
+    ground:"#EAB543",
+    ghost:"#574b90",
+    rock:"#f7f1e3",
+    steel:"#d1ccc0",
+    ice:"#ffffff"
+  
+  }

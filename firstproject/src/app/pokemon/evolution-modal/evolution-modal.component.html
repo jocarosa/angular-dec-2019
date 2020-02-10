@@ -1,11 +1,31 @@
-<ng-template #template>
+<ng-template #evolutionChainTemplate>
+  <div class="containerChain" [style.background-color]="descriptioncolors[pokemon.types[0]]">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span style="color:white" aria-hidden="true">&times;</span>
+    </button>   
+    <img class="pokemonImg" src="{{pokemon.sprite}}">
+    <div class="pokemonDescription">
+      <h4 class="modal-title pull-left">{{pokemon.name | titlecase}}</h4>
+      <div class="pokemonDescription alignCenter">{{pokemon.description}}</div> 
+      <div style="background-color: #f5f6fa; border-radius: 12px;" class="modal-body">
+        <h4 class="modal-title pull-left">Evolution Chain</h4>
+      </div>
+    </div>
+   
+  </div>
+ <!--  
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+     
+     
+      <div class="pokemonTypeContainer">
+        <label *ngFor="let type of pokemon.types" class="pokemonType" [style.background-color]="descriptioncolors[type]">
+          {{type | titlecase }}
+        </label>
+      </div> 
+    
     </div>
+    
     <div class="modal-body">
-      This is a modal.
-    </div>
+     
+    </div>-->
   </ng-template>

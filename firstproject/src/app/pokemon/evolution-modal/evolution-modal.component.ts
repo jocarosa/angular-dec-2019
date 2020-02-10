@@ -1,7 +1,7 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, OnInit,TemplateRef,ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PokemonService } from '@pokemon/pokemon.service';
-import { getPokemonSpecieAndDescriptionByNo,parseDataPokemon } from '@pokemon/shared'
+import { getPokemonSpecieAndDescriptionByNo,parseDataPokemon,descriptioncolors } from '@pokemon/shared'
 
 @Component({
   selector: 'app-evolution-modal',
@@ -9,22 +9,26 @@ import { getPokemonSpecieAndDescriptionByNo,parseDataPokemon } from '@pokemon/sh
   styleUrls: ['./evolution-modal.component.css']
 })
 export class EvolutionModalComponent implements OnInit {
-
+  @ViewChild('evolutionChainTemplate',{static:false})
+  private evolutionChainTemplate:TemplateRef<any>
+  descriptioncolors = descriptioncolors;
   modalRef: BsModalRef; 
   constructor(
     private modalService: BsModalService,
     private pokemonService:PokemonService
+    
     ) { }
 
   ngOnInit() {
   }
   pokemonChains=[];
   pokemons;
-  template:TemplateRef<any>
-
+  pokemon;
+  
   openModal(pokemon,pokemons){
     this.pokemons = pokemons;
-    this.modalRef = this.modalService.show(this.template);
+    this.pokemon=pokemon;
+    this.modalRef = this.modalService.show(this.evolutionChainTemplate);
     const pokemonChainUrl=pokemon["chain_url"];
     if(this.pokemonChains[pokemonChainUrl] == null ){
       this.pokemonChains[pokemonChainUrl]=[];

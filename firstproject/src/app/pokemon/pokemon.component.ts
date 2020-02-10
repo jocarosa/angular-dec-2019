@@ -1,4 +1,4 @@
-import { Component, OnInit,TemplateRef,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { PokemonService } from '@pokemon/pokemon.service';
 import { descriptioncolors, pokemonsFakeData } from '@env/environment';
 import { trigger,state, style,transition,animate,query, stagger } from '@angular/animations';
@@ -52,7 +52,6 @@ export class PokemonComponent implements OnInit {
 
   @ViewChild(EvolutionModalComponent,{static:false}) 
   private evolutionModal:EvolutionModalComponent;
-
   descriptioncolors = descriptioncolors
   public pokemons = [];//pokemonsFakeData;  
   pokeke=[];
@@ -60,12 +59,8 @@ export class PokemonComponent implements OnInit {
   pokemonAnimate= {}
   pokemonImageSrc={};
   animateOnLoad;
-
   showAnimatedPokemons:boolean;
-  //modalRef: BsModalRef; private modalService: BsModalService
   genera:any;
-   //@Output() genera = new EventEmitter<any>();;
- //@Output() findPokemonsByGenerationAndOffset = new EventEmitter();
 
   constructor(private pokemonService: PokemonService,
    ) { 
@@ -83,20 +78,6 @@ export class PokemonComponent implements OnInit {
     
     
   }
-
- /* private savesEvolutionChain(pokemonChainUrl:string){  
-    this.pokemonService.getEvolutionChainByName(pokemonChainUrl).subscribe(pokemonName=>{
-      const pokemonFromCache = this.getPokemonFromCache(pokemonName)
-      if(pokemonFromCache){
-        this.pokemonChains[pokemonChainUrl].push(pokemonFromCache);
-      }else{
-        const pokemondata = getPokemonSpecieAndDescriptionByNo(pokemonName);
-        pokemondata.subscribe(d=>{
-          this.pokemonChains[pokemonChainUrl].push(this.parseDataPokemon(d));
-        })
-      }
-    })
-  }*/
 
   toggle(pokemon){
     
@@ -161,7 +142,7 @@ export class PokemonComponent implements OnInit {
 
  pokemonChains = [];
 
-pokemonExist(pokemon){
+/*private pokemonExist(pokemon){
   
     for(let i=0;i<this.pokemons.length;i++){
        if(this.pokemons[i].name == pokemon.name){
@@ -170,46 +151,15 @@ pokemonExist(pokemon){
     }
 
     return false;
-}
-/*evolutionModal(pokemon:any){
-  const pokemonChainUrl=pokemon["chain_url"];
-  if(this.pokemonChains[pokemonChainUrl] == null ){
-    this.pokemonChains[pokemonChainUrl]=[];
-    this.savesEvolutionChain(pokemonChainUrl);
-  }
 }*/
 
 openModal(pokemon){
   this.evolutionModal.openModal(pokemon,this.pokemons);
 }
 
-getAllPokemons(){
+/*getAllPokemons(){
   return this.pokemons;
-}
-/*private getPokemonFromCache(pokemonName){
-  return  this.pokemons.find(x=>x.name == pokemonName)
 }*/
-/*private getPokemonSpecieAndDescriptionByNo(pokemonNo){
-  const pokemonData = this.pokemonService.getPokemonDataByNo(pokemonNo);
-  return pokemonData;
-}*/
-
-/*private getPokemonDescription(flavor_text_entries: any[]) {
-  for (let i = 0; i < flavor_text_entries.length; i++) {
-    const currentText = flavor_text_entries[i];
-    if (currentText.language.name == "en") {
-      return currentText.flavor_text;
-    }
-  }
-}
-private getPokemonTypes(typesR: any[]) {
-  let types = [];
-  for (let i = 0; i < typesR.length; i++) {
-    types.push(typesR[i].type.name);
-  }
-  return types;
-}*/
-
 
 }
 
