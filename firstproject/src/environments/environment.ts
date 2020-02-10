@@ -4,31 +4,38 @@ export const environment = {
 export const GENERATION ={
   ONE:{
     "start":1,
-    "end": 151
+    "end": 151,
+    "generation":"generation-i"
   },
   TWO:{
     "start":152,
-    "end": 251
+    "end": 251,
+    "generation":"generation-ii"
   },
   THREE:{
     "start":252,
-    "end": 386
+    "end": 386,
+    "generation":"generation-iii"
   },
   FOUR:{
     "start":387,
-    "end": 493
+    "end": 493,
+    "generation":"generation-iv"
   },
   FIVE:{
     "start":494,
-    "end": 649
+    "end": 649,
+    "generation":"generation-v"
   },
   SIX:{
     "start":650,
-    "end": 721
+    "end": 721,
+    "generation":"generation-vi"
   },
   SEVEN:{
     "start":722,
-    "end": 752
+    "end": 752,
+    "generation":"generation-vii"
   }
 }
 

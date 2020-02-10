@@ -8,6 +8,7 @@ import { CarouselModule } from 'ngx-bootstrap';
 import { PokemonComponent } from '@pokemon/pokemon.component';
 import { TabComponentComponent } from '@pokemon/tab-component/tab-component.component'
 import { PaginatorPokemonComponent } from '@pokemon/paginator-pokemon/paginator-pokemon.component'
+import {EvolutionModalComponent} from '@pokemon/evolution-modal/evolution-modal.component';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
@@ -26,7 +27,8 @@ const routes: Routes = [
     declarations: [
         PokemonComponent ,
         TabComponentComponent ,
-        PaginatorPokemonComponent
+        PaginatorPokemonComponent,
+        EvolutionModalComponent
      ],
     imports: [
         CommonModule,

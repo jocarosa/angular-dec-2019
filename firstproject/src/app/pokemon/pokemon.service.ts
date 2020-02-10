@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable,forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { baseUrlApi } from '@env/environment';
-import { switchMap, filter } from 'rxjs/operators';
+import { switchMap,map, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,58 +12,74 @@ export class PokemonService {
   constructor(private http: HttpClient) { }
 
  
-  getPokemonDataByNumber(pokemonNo:number):Observable<any> {
-      const pokemonSpecie = this.getPokemonSpecieByNo(pokemonNo);
-      let pokemonNumbersFromChain = [];
-      const pokemonResume = this.getPokemonResumeByNo(pokemonNo);
-
-      /*let pokemonEvolutionChain = pokemonSpecie.pipe(
-        switchMap(p=> this.http.get(`${p.evolution_chain.url}`).pipe(
-          switchMap(param => this.getEvolutionChain(param,pokemonNumbersFromChain))  
-          )
-        )
-      )*/
-      
+  getPokemonDataByNo(pokemonNo:string):Observable<any> {
+      const pokemonName = pokemonNo;
+      const pokemonSpecie = this.getPokemonSpecieByName(pokemonName);
+      const pokemonResume = this.getPokemonResumeByName(pokemonName);
       return forkJoin([pokemonSpecie,pokemonResume]);
   }
 
-  private getEvolutionChain(param,pokemonNumbersFromChain){
-    this.getPokemonsNumbersFromChain(param.chain.evolves_to, pokemonNumbersFromChain);
-    let d = [];
-     pokemonNumbersFromChain.map(no => {
-       d.push(this.getPokemonDataChainByNo(no));
-      
-    });
-    return forkJoin(d);
+  getEvolutionChainByName(url:string){
+    let pokemonNamesFromChain=[];
+       
+   return this.http.get(url)
+    .pipe(
+      switchMap(
+        (
+           res => {
+             this.getPokemonsNamesFromChain( res["chain"]["evolves_to"], pokemonNamesFromChain )
+             return pokemonNamesFromChain;
+           }
+        )
+      )
+    )
+
+    
+      /*
+      this.getPokemonsNamesFromChain( p["chain"].evolves_to, pokemonNamesFromChain ),
+      pokemonNamesFromChain.map(name => {
+          evolutionChain.push(this.getPokemonDataChainByName(name));
+        })
+       */
+    
+             
   }
 
-  private getPokemonDataChainByNo(pokemonNo:number){ 
-    let s=[]
-     s.push(this.getPokemonSpecieByNo(pokemonNo));
-     s.push(this.getPokemonResumeByNo(pokemonNo));
-    return forkJoin(s);
-  }
+  /*private getPokemonDataChainByName(pokemonName:string){ 
+    return forkJoin(
+      [
+        this.getPokemonSpecieByName(pokemonName),
+        this.getPokemonResumeByName(pokemonName)
+      ]
+    );
+  }*/
 
-  public getPokemonSpecieByNo(pokemonNo:number):Observable<any>{
-   return this.http.get(`${baseUrlApi}/pokemon-species/${pokemonNo}`);
+  public getPokemonSpecieByName(pokemonName:string):Observable<any>{
+   return this.http.get(`${baseUrlApi}/pokemon-species/${pokemonName}`);
   }
  
-  public getPokemonResumeByNo(pokemonNo:number):Observable<any>{
-    return  this.http.get(`${baseUrlApi}/pokemon/${pokemonNo}`);
+  public getPokemonResumeByName(pokemonName:string):Observable<any>{
+    return  this.http.get(`${baseUrlApi}/pokemon/${pokemonName}`);
   }
  
-  private getPokemonsNumbersFromChain(evolves_to,pokemonNumbersFromChain){
-    if (evolves_to.length !== 0) {
-      pokemonNumbersFromChain.push(this.getNoFromUrl(evolves_to[0].species.url));
-      this.getPokemonsNumbersFromChain(evolves_to[0].evolves_to,pokemonNumbersFromChain);
+  private getPokemonsNamesFromChain(evolves_to,pokemonNamesFromChain){
+    if(evolves_to.length > 1){
+      for(let i=0;i<evolves_to.length;i++){
+          let pokemonName =evolves_to[i].species.name
+           pokemonNamesFromChain.push(pokemonName);
+      }
+      return pokemonNamesFromChain;
+
     }else{
-      return pokemonNumbersFromChain;
-    }
+      if (evolves_to.length !== 0) {
+        const pokemonName = evolves_to[0].species.name;
+        pokemonNamesFromChain.push(pokemonName);
+        this.getPokemonsNamesFromChain(evolves_to[0].evolves_to,pokemonNamesFromChain);
+      }else{
+        return pokemonNamesFromChain;
+      }
+   }
   }
-  private getNoFromUrl(url){
-    return url.split("/")[6]
-  }
-
   public getSpritePokemonByNo(no: string) {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${no}.png`
   }

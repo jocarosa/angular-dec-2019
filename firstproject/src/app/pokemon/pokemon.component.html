@@ -3,30 +3,42 @@
     <div class="containerLogo">
         <img [@rubberBand]="animationState" class="logo" src="../../assets/img/pokemon-generations.png">
     </div>
-    <marquee direction=left scrolldelay=150><img class="pokemonFlying" src="../../assets/img/mew.png"></marquee>
-    <marquee style="margin-bottom: -290px; float:left;opacity: 0.9;" direction=right scrolldelay=150><img class="pokemonFlying" src="../../assets/img/moltres.png"></marquee>
     <div class="containerPaginator">
         <app-paginator-pokemon [generac]="genera" (next)="findPokemonsByGenerationAndOffset($event)" ></app-paginator-pokemon>
     </div>
-    <div class="mainPokemonContainer">
+     <div class="mainPokemonContainer">
         <menu-tab-component (findGeneration)="findPokemonsByGenerationAndOffset($event)" ></menu-tab-component>
-        <img class="pikachuLoadStyle" *ngIf="pikachuLoading" src="../../assets/img/loading.gif">
-        <div *ngIf="!pikachuLoading" class="containerByGeneration">
-                <div [@query]="animateOnLoad">
-                        <div *ngFor="let pokemon of pokemons" class="pokemonContainer  textFormat" 
-                        (mouseenter)="toggle(pokemon)" (mouseleave)="toggle(pokemon)"
-                            [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
-                                    <img class="pokemonImg"
-                                        src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprite :  pokemonImageSrc[pokemon.name] }}">
-                                        <div class="pokemonName alignCenter"> {{pokemon.name | titlecase}} </div> 
-                                        <div class="pokemonDescription alignCenter">{{pokemon.description}}</div>
-                            <div class="pokemonTypeContainer">
-                                <label *ngFor="let type of pokemon.types" class="pokemonType"
-                                    [style.background-color]="descriptioncolors[type]"> {{type | titlecase }}
-                                </label>
-                            </div>
+        <div class="containerByGeneration">
+            <img class="pikachuLoadStyle" *ngIf="pikachuLoading" src="../../assets/img/loading.gif">
+                <div  [@query]="animateOnLoad"  *ngIf="!pikachuLoading" >
+                    <div  class="contai"  style="float:left" *ngFor="let pokemon of pokeke"  (mouseenter)="toggle(pokemon)"
+                        (mouseleave)="toggle(pokemon)" [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
+                        <div *ngIf="pokemon.isValid" class="pokemonContainer textFormat" >
+                            <a [routerLink]="" (click)="openModal(pokemon)"> <img class="pokemonImg"
+                                src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprite :  pokemonImageSrc[pokemon.name] }}"></a>
+                            <div  class="pokemonName alignCenter">{{pokemon.name | titlecase}} </div>
                         </div>
+                        <!-- <div class="pokemonDescription alignCenter">{{pokemon.description}}</div> -->
+                        <!-- <div class="pokemonTypeContainer">
+                                    <label *ngFor="let type of pokemon.types" class="pokemonType"
+                                        [style.background-color]="descriptioncolors[type]"> {{type | titlecase }}
+                                    </label>
+                                </div> -->
                     </div>
+            
+                </div>
+                <app-evolution-modal></app-evolution-modal>
+                <!-- <ng-template #template>
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">Modal</h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        This is a modal.
+                    </div>
+                </ng-template> -->
         </div>
-     
     </div>
+    

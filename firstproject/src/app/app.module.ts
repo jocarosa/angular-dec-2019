@@ -5,22 +5,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 
+
 import {PokemonService} from '@pokemon/pokemon.service';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { EvolutionModalComponent } from './pokemon/evolution-modal/evolution-modal.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
  
 @NgModule({
   declarations: [
-    AppComponent,
-    EvolutionModalComponent    
+    AppComponent        
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [PokemonService,HttpClient],
   bootstrap: [AppComponent]

@@ -1,1 +1,1 @@
-<pagination style="background-color: yellow;" [directionLinks]="false" [totalItems]="generac.end - generac.start" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+<pagination  [itemsPerPage]="15"[directionLinks]="false" [totalItems]="generac.end - generac.start" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>

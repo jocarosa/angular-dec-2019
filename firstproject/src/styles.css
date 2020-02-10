@@ -27,5 +27,22 @@ body{
     border-left: 0;
     
 }
+.pagination{
+  margin: -50px 0 0 50px;
+}
+.pagination .page-link
+{
+    background-color:#212121;
+    color:white;
+    border:0;
+}
 
+.pagination .page-link:hover{
+  background-color :#f7c117;
+    color:white;
+    border:0;
+}
 
+.page-item.active .page-link{
+  background-color :#f7c117 !important;
+}
