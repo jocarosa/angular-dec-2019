@@ -1,18 +1,26 @@
 <ng-template #evolutionChainTemplate>
-  <div class="containerChain" [style.background-color]="descriptioncolors[pokemon.types[0]]">
+  <div class="containerChain" [style.background-color]="white">
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span style="color:black;font-size: 35px;" aria-hidden="true">&times;</span>
     </button>   
     <img class="pokemonImg" src="{{pokemon.sprite}}">
+    <h4 style="text-align: center;color:black" class="modal-title pull-left">{{pokemon.name | titlecase}}</h4>
     <div class="pokemonDescription">
-      <h4 class="modal-title pull-left">{{pokemon.name | titlecase}}</h4>
-      <div class="pokemonDescription alignCenter">{{pokemon.description}}</div> 
+      <div [style.background-color]="descriptioncolors[type]" class="pokemonType" *ngFor="let type of pokemon.types">{{type}}</div>
+      <div class="">{{pokemon.description}}</div>
       <div style="background-color: #f5f6fa; border-radius: 12px;" class="modal-body">
-        <h4 class="modal-title pull-left">Evolution Chain</h4>
+        <div *ngIf=" getPokemonChain(pokemon).length > 1">
+          <h4 class="modal-title pull-left">Evolution Chain</h4>
+          <div class="chainStyle" *ngFor="let pokemonFromChain of getPokemonChain(pokemon)">
+            <a [routerLink]="" (click)="changePokemonChain(pokemonFromChain)"><img src="{{pokemonFromChain.sprite}}"></a>
+            {{pokemonFromChain.name}}
+          </div>
+        </div>
+       
       </div>
     </div>
-   
-  </div>
+  </div>  
+  </ng-template>
  <!--  
     <div class="modal-header">
      
@@ -28,4 +36,4 @@
     <div class="modal-body">
      
     </div>-->
-  </ng-template>
+ 

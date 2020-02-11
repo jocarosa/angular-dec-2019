@@ -25,7 +25,7 @@ export class EvolutionModalComponent implements OnInit {
   pokemons;
   pokemon;
   
-  openModal(pokemon,pokemons){
+  openModal(pokemon,pokemons?){
     this.pokemons = pokemons;
     this.pokemon=pokemon;
     this.modalRef = this.modalService.show(this.evolutionChainTemplate);
@@ -48,6 +48,14 @@ private savesEvolutionChain(pokemonChainUrl:string){
         })
       }
     })
+  }
+
+  getPokemonChain(pokemon){
+    const pokemonChainUrl=pokemon["chain_url"];
+    return this.pokemonChains[pokemonChainUrl];
+  }
+  changePokemonChain(pokemon){
+    this.pokemon = pokemon;
   }
 
   private getPokemonFromCache(pokemonName){
