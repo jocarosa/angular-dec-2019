@@ -1,5 +1,5 @@
 <ng-template #evolutionChainTemplate>
-  <div class="containerChain" [style.background-color]="white">
+  <div class="containerChain" [style.background-color]="#f5f6fa">
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span style="color:black;font-size: 35px;" aria-hidden="true">&times;</span>
     </button>   
@@ -21,19 +21,3 @@
     </div>
   </div>  
   </ng-template>
- <!--  
-    <div class="modal-header">
-     
-     
-      <div class="pokemonTypeContainer">
-        <label *ngFor="let type of pokemon.types" class="pokemonType" [style.background-color]="descriptioncolors[type]">
-          {{type | titlecase }}
-        </label>
-      </div> 
-    
-    </div>
-    
-    <div class="modal-body">
-     
-    </div>-->
- 
