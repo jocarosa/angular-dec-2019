@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginatorPokemonComponent } from './paginator-pokemon.component';
+import { EvolutionModalComponent } from './modal-evolution-cmp';
 
-describe('PaginatorPokemonComponent', () => {
-  let component: PaginatorPokemonComponent;
-  let fixture: ComponentFixture<PaginatorPokemonComponent>;
+describe('EvolutionModalComponent', () => {
+  let component: EvolutionModalComponent;
+  let fixture: ComponentFixture<EvolutionModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginatorPokemonComponent ]
+      declarations: [ EvolutionModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginatorPokemonComponent);
+    fixture = TestBed.createComponent(EvolutionModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

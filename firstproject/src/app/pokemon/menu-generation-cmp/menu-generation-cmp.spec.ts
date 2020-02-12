@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EvolutionModalComponent } from './evolution-modal.component';
+import { TabComponentComponent } from './menu-generation-cmp';
 
-describe('EvolutionModalComponent', () => {
-  let component: EvolutionModalComponent;
-  let fixture: ComponentFixture<EvolutionModalComponent>;
+describe('TabComponentComponent', () => {
+  let component: TabComponentComponent;
+  let fixture: ComponentFixture<TabComponentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EvolutionModalComponent ]
+      declarations: [ TabComponentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EvolutionModalComponent);
+    fixture = TestBed.createComponent(TabComponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

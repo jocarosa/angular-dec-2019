@@ -58,3 +58,70 @@ export function parseDataPokemon(pokeData) {
     ice:"#ffffff"
   
   }
+
+  export const GENERATION ={
+    ONE:{
+      "start":1,
+      "end": 151,
+      "generation":"generation-i"
+    },
+    TWO:{
+      "start":152,
+      "end": 251,
+      "generation":"generation-ii"
+    },
+    THREE:{
+      "start":252,
+      "end": 386,
+      "generation":"generation-iii"
+    },
+    FOUR:{
+      "start":387,
+      "end": 493,
+      "generation":"generation-iv"
+    },
+    FIVE:{
+      "start":494,
+      "end": 649,
+      "generation":"generation-v"
+    },
+    SIX:{
+      "start":650,
+      "end": 721,
+      "generation":"generation-vi"
+    },
+    SEVEN:{
+      "start":722,
+      "end": 803,
+      "generation":"generation-vii"
+    }
+  }
+  
+  export const baseUrlApi = "https://pokeapi.co/api/v2";
+
+  export const pokemonsFakeData =[{
+    name:'pikachu',
+    front_default:"https://img.pokemondb.net/sprites/black-white/normal/pikachu.png",
+    description:'Pikachu is a mouse pokemon',
+    evolutions:[
+      {
+        name:"raichu",
+        front_default:"https://img.pokemondb.net/sprites/black-white/normal/raichu.png",
+        description:'Pikachu is a mouse pokemon'
+      },
+      {
+        name:"pichu",
+        front_default:"https://img.pokemondb.net/sprites/black-white/normal/pichu.png",
+        description:'pichu is a mouse pokemon'
+      }
+    ],
+    types:[
+      {
+       
+        name:"electric"
+       
+      }
+    ]
+  }, 
+  ];
+  

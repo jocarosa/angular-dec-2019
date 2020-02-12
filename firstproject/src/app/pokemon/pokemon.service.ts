@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable,forkJoin } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { baseUrlApi } from '@env/environment';
-import { switchMap,map, filter } from 'rxjs/operators';
+import { baseUrlApi } from '@pokemon/shared';
+import { switchMap, map, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,74 +11,57 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
- 
-  getPokemonDataByNo(pokemonNo:string):Observable<any> {
-      const pokemonName = pokemonNo;
-      const pokemonSpecie = this.getPokemonSpecieByName(pokemonName);
-      const pokemonResume = this.getPokemonResumeByName(pokemonName);
-      return forkJoin([pokemonSpecie,pokemonResume]);
+
+  getPokemonDataByNo(pokemonNo: string): Observable<any> {
+    const pokemonName = pokemonNo;
+    const pokemonSpecie = this.getPokemonSpecieByName(pokemonName);
+    const pokemonResume = this.getPokemonResumeByName(pokemonName);
+    return forkJoin([pokemonSpecie, pokemonResume]);
   }
 
-  getEvolutionChainByName(url:string){
-    let pokemonNamesFromChain=[];
-       
-   return this.http.get(url)
-    .pipe(
-      switchMap(
-        (
-           res => {
-             this.getPokemonsNamesFromChain( res["chain"]["evolves_to"], pokemonNamesFromChain )
-             return pokemonNamesFromChain;
-           }
+  getEvolutionChainByName(url: string) {
+    let pokemonNamesFromChain = [];
+
+    return this.http.get(url)
+      .pipe(
+        switchMap(
+          (
+            res => {
+              this.getPokemonsNamesFromChain(res["chain"]["evolves_to"], pokemonNamesFromChain)
+              return pokemonNamesFromChain;
+            }
+          )
         )
       )
-    )
 
-    
-      /*
-      this.getPokemonsNamesFromChain( p["chain"].evolves_to, pokemonNamesFromChain ),
-      pokemonNamesFromChain.map(name => {
-          evolutionChain.push(this.getPokemonDataChainByName(name));
-        })
-       */
-    
-             
+
   }
 
-  /*private getPokemonDataChainByName(pokemonName:string){ 
-    return forkJoin(
-      [
-        this.getPokemonSpecieByName(pokemonName),
-        this.getPokemonResumeByName(pokemonName)
-      ]
-    );
-  }*/
+  public getPokemonSpecieByName(pokemonName: string): Observable<any> {
+    return this.http.get(`${baseUrlApi}/pokemon-species/${pokemonName}`);
+  }
 
-  public getPokemonSpecieByName(pokemonName:string):Observable<any>{
-   return this.http.get(`${baseUrlApi}/pokemon-species/${pokemonName}`);
+  public getPokemonResumeByName(pokemonName: string): Observable<any> {
+    return this.http.get(`${baseUrlApi}/pokemon/${pokemonName}`);
   }
- 
-  public getPokemonResumeByName(pokemonName:string):Observable<any>{
-    return  this.http.get(`${baseUrlApi}/pokemon/${pokemonName}`);
-  }
- 
-  private getPokemonsNamesFromChain(evolves_to,pokemonNamesFromChain){
-    if(evolves_to.length > 1){
-      for(let i=0;i<evolves_to.length;i++){
-          let pokemonName =evolves_to[i].species.name
-           pokemonNamesFromChain.push(pokemonName);
+
+  private getPokemonsNamesFromChain(evolves_to, pokemonNamesFromChain) {
+    if (evolves_to.length > 1) {
+      for (let i = 0; i < evolves_to.length; i++) {
+        let pokemonName = evolves_to[i].species.name
+        pokemonNamesFromChain.push(pokemonName);
       }
       return pokemonNamesFromChain;
 
-    }else{
+    } else {
       if (evolves_to.length !== 0) {
         const pokemonName = evolves_to[0].species.name;
         pokemonNamesFromChain.push(pokemonName);
-        this.getPokemonsNamesFromChain(evolves_to[0].evolves_to,pokemonNamesFromChain);
-      }else{
+        this.getPokemonsNamesFromChain(evolves_to[0].evolves_to, pokemonNamesFromChain);
+      } else {
         return pokemonNamesFromChain;
       }
-   }
+    }
   }
   public getSpritePokemonByNo(no: string) {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${no}.png`

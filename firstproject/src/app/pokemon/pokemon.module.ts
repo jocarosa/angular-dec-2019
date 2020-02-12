@@ -3,43 +3,40 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CarouselModule } from 'ngx-bootstrap';
-
-import { PokemonComponent } from '@pokemon/pokemon.component';
-import { TabComponentComponent } from '@pokemon/tab-component/tab-component.component'
-import { PaginatorPokemonComponent } from '@pokemon/paginator-pokemon/paginator-pokemon.component'
-import {EvolutionModalComponent} from '@pokemon/evolution-modal/evolution-modal.component';
+import { PokemonComponent } from '@pokemon/pokemon.cmp';
+import { TabComponentComponent } from '@pokemon/menu-generation-cmp/menu-generation-cmp'
+import { PaginatorPokemonComponent } from '@pokemon/paginator-cmp/paginator-cmp'
+import { EvolutionModalComponent } from '@pokemon/modal-evolution-cmp/modal-evolution-cmp';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 const routes: Routes = [
-    { 
+    {
         path: '', component: PokemonComponent,
-        children:[
+        children: [
             {
-                path:"generation/:id",component:PokemonComponent
+                path: "generation/:id", component: PokemonComponent
             }
         ]
- }
+    }
 ];
 
 @NgModule({
     declarations: [
-        PokemonComponent ,
-        TabComponentComponent ,
+        PokemonComponent,
+        TabComponentComponent,
         PaginatorPokemonComponent,
         EvolutionModalComponent
-     ],
+    ],
     imports: [
         CommonModule,
-        CarouselModule.forRoot(),
         PaginationModule.forRoot(),
         RouterModule.forChild(routes),
-        FormsModule 
-               
+        FormsModule
+
     ],
-    exports:[RouterModule],
+    exports: [RouterModule],
     bootstrap: [PokemonComponent],
-    providers:[]
-  })
-  export class PokemonModule { }
+    providers: []
+})
+export class PokemonModule { }

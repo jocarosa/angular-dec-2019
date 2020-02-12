@@ -1,0 +1,25 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<div class="containerLogo">
+    <img [@rubberBand]="animationState" class="logo" src="../../assets/img/pokemon-generations.png">
+</div>
+<div class="containerPaginator">
+    <paginator-cmp [generac]="genera" (next)="findPokemonsByGenerationAndOffset($event)">
+    </paginator-cmp>
+</div>
+<div class="mainPokemonContainer">
+    <menu-generation-cmp (findGeneration)="findPokemonsByGenerationAndOffset($event)"></menu-generation-cmp>
+    <div class="containerByGeneration">
+        <img class="pikachuLoadStyle" *ngIf="pikachuLoading" src="../../assets/img/loading.gif">
+        <div [@query]="animateOnLoad" *ngIf="!pikachuLoading">
+            <div class="contai" style="float:left" *ngFor="let pokemon of pokeke" (mouseenter)="toggle(pokemon)"
+                (mouseleave)="toggle(pokemon)" [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
+                <div *ngIf="pokemon.isValid" class="pokemonContainer textFormat">
+                    <a [routerLink]="" (click)="openModal(pokemon)"> <img class="pokemonImg"
+                            src="{{ pokemonImageSrc[pokemon.name] = (pokemonImageSrc[pokemon.name]==null) ? pokemon.sprite :  pokemonImageSrc[pokemon.name] }}"></a>
+                    <div class="pokemonName alignCenter">{{pokemon.name | titlecase}} </div>
+                </div>
+            </div>
+        </div>
+        <modal-evolution-cmp></modal-evolution-cmp>
+    </div>
+</div>

@@ -1,12 +1,13 @@
 import { Component, OnInit,TemplateRef,ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PokemonService } from '@pokemon/pokemon.service';
-import { getPokemonSpecieAndDescriptionByNo,parseDataPokemon,descriptioncolors } from '@pokemon/shared'
+import { getPokemonSpecieAndDescriptionByNo,
+  parseDataPokemon,descriptioncolors } from '@pokemon/shared'
 
 @Component({
-  selector: 'app-evolution-modal',
-  templateUrl: './evolution-modal.component.html',
-  styleUrls: ['./evolution-modal.component.css']
+  selector: 'modal-evolution-cmp',
+  templateUrl: './modal-evolution-cmp.html',
+  styleUrls: ['./modal-evolution-cmp.css']
 })
 export class EvolutionModalComponent implements OnInit {
   @ViewChild('evolutionChainTemplate',{static:false})

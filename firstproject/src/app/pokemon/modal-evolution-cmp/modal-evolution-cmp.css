@@ -1,6 +1,7 @@
 .containerChain{
     padding:8px;
     height: auto;
+    border:5px solid black;
 }
 .pokemonImg{
     width:274px;
