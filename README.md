@@ -1,1 +1,1 @@
-this projects is for practices purposes
+this projects is for practice purposes
