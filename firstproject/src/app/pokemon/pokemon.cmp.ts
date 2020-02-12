@@ -52,12 +52,12 @@ export class PokemonComponent implements OnInit {
   @ViewChild(EvolutionModalComponent, { static: false })
   private evolutionModal: EvolutionModalComponent;
   descriptioncolors = descriptioncolors
-  public pokemons = [];//pokemonsFakeData;  
+  public pokemons = []; 
   pokeke = [];
   images: any;
   pokemonAnimate = {}
   pokemonImageSrc = {};
-  animateOnLoad;
+  animateOnLoad:any;
   showAnimatedPokemons: boolean;
   genera: any;
 
@@ -137,10 +137,6 @@ export class PokemonComponent implements OnInit {
       }
     );
   }
-
-
-  pokemonChains = [];
-
 
   openModal(pokemon) {
     this.evolutionModal.openModal(pokemon, this.pokemons);

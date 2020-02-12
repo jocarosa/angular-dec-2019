@@ -63,7 +63,7 @@ export class PokemonService {
       }
     }
   }
-  public getSpritePokemonByNo(no: string) {
+  getSpritePokemonByNo(no: string) {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${no}.png`
   }
 
