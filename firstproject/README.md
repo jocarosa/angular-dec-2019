@@ -1,10 +1,10 @@
-# POKEMON API
+# Pokemon API
 
 This project consumes a pokemon API retrieving all Pokemons by Generation.
 
 https://pokeapi.co/
 
-# TECH:
+# Tech:
 
 -Angular 8
 -Typescript 3.5
