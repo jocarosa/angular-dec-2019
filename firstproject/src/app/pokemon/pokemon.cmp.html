@@ -1,6 +1,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <div class="containerLogo">
-    <img [@rubberBand]="animationState" class="logo" src="../../assets/img/pokemon-generations.png">
+    <img [@rubberBand]="animationState" class="logo" src="assets/img/pokemon-generations.png">
 </div>
 <div class="containerPaginator">
     <paginator-cmp [generac]="genera" (next)="findPokemonsByGenerationAndOffset($event)">
@@ -9,7 +9,7 @@
 <div class="mainPokemonContainer">
     <menu-generation-cmp (findGeneration)="findPokemonsByGenerationAndOffset($event)"></menu-generation-cmp>
     <div class="containerByGeneration">
-        <img class="pikachuLoadStyle" *ngIf="pikachuLoading" src="../../assets/img/loading.gif">
+        <img class="pikachuLoadStyle" *ngIf="pikachuLoading" src="assets/img/loading.gif">
         <div [@query]="animateOnLoad" *ngIf="!pikachuLoading">
             <div class="contai" style="float:left" *ngFor="let pokemon of pokeke" (mouseenter)="toggle(pokemon)"
                 (mouseleave)="toggle(pokemon)" [@pokemonContainerAnimate]="pokemonAnimate[pokemon.name]">
