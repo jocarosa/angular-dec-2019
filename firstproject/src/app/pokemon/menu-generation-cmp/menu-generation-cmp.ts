@@ -16,7 +16,6 @@ export class TabComponentComponent implements OnInit {
 
   constructor(private pokemonService:PokemonService) { }
   linksGenerations;
-  collapse_1=false;
   generation = GENERATION;
 
   @Output() findGeneration = new EventEmitter<any>();
@@ -24,7 +23,9 @@ export class TabComponentComponent implements OnInit {
   ngOnInit() {}
   
   find(generation){
+    debugger
     generation["currentPage"]=1;
+    generation["menu"]=true;
     this.findGeneration.emit(generation);
   }
   getSpritePokemonByNo(no:string){
