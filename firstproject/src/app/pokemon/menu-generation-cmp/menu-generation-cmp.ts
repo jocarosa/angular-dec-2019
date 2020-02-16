@@ -24,7 +24,7 @@ export class TabComponentComponent implements OnInit {
   ngOnInit() {}
   
   find(generation){
-    generation["menu"]=true;
+    generation["currentPage"]=1;
     this.findGeneration.emit(generation);
   }
   getSpritePokemonByNo(no:string){
