@@ -23,7 +23,6 @@ export class TabComponentComponent implements OnInit {
   ngOnInit() {}
   
   find(generation){
-    debugger
     generation["currentPage"]=1;
     generation["menu"]=true;
     this.findGeneration.emit(generation);

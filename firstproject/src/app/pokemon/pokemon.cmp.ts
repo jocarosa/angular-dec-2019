@@ -103,7 +103,7 @@ export class PokemonComponent implements OnInit {
   pikachuLoading;
 
   findPokemonsByGenerationAndOffset(generacion) {
-
+    
     if (generacion.menu) {
       this.genera = generacion; // set size paginator by the number of pokemomns
     }
