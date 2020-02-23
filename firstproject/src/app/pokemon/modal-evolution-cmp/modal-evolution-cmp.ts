@@ -21,7 +21,7 @@ export class EvolutionModalComponent implements OnInit {
 
   ngOnInit() {
   }
-  pokemon=[];
+  pokemon;
   
   openModal(pokemon){
     this.getPokemonResume(pokemon.name);
@@ -48,7 +48,6 @@ export class EvolutionModalComponent implements OnInit {
           parseDataPokemon(pokemonData)
        );
        this.pokemon["pokemonChain"] = m;
-       debugger
       })
     });
   }

@@ -5,7 +5,9 @@ export function  getPokemonSpecieAndDescriptionByNo(pokemonNo, pokemonService){
 }
 
 export function parseDataPokemon(pokeData) {
-    let pokemon = [];
+    let pokemon = {
+      pokemonChain:[]
+    }
     const pokemonSpecie = pokeData[0];
     const pokemonResume = pokeData[1];
     const flavor_text_entries = pokemonSpecie.flavor_text_entries;
