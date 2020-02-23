@@ -25,6 +25,7 @@ export class EvolutionModalComponent implements OnInit {
   
   openModal(pokemon){
     this.getPokemonResume(pokemon.name);
+    this.modalRef = this.modalService.show(this.evolutionChainTemplate);
   }
 
   changePokemonChain(pokemon){
@@ -41,18 +42,12 @@ export class EvolutionModalComponent implements OnInit {
   
   getPokemonChain(){
     let m=[];
-    let n=1;
     this.pokemonService.getEvolutionChain(this.pokemon["chain_url"]).subscribe(pokemonName=>{
       this.pokemonService.getPokemonTypeAndDescriptionByName(pokemonName).subscribe(pokemonData=>{
         m.push(
           parseDataPokemon(pokemonData)
        );
-
        this.pokemon["pokemonChain"] = m;
-       if(n == pokemonData.length){
-          this.modalRef = this.modalService.show(this.evolutionChainTemplate);
-       }
-       n++;
        debugger
       })
     });
