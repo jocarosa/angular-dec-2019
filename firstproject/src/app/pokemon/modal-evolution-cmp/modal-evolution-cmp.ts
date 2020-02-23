@@ -29,6 +29,7 @@ export class EvolutionModalComponent implements OnInit {
   openModal(pokemon,pokemons?){
     this.pokemons = pokemons;
     this.pokemon=pokemon;
+    this.pokemon["spriteAnimated"]=`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemon.name}.gif`;
     this.modalRef = this.modalService.show(this.evolutionChainTemplate);
     const pokemonChainUrl=pokemon["chain_url"];
     if(this.pokemonChains[pokemonChainUrl] == null ){
