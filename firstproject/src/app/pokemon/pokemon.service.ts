@@ -26,7 +26,6 @@ export class PokemonService {
   }
   
   getEvolutionChain(url: string) {
-    debugger
     let pokemonNamesFromChain = [];
 
     return this.http.get(url)
