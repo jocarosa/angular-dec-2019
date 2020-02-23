@@ -10,7 +10,6 @@ export function parseDataPokemon(pokeData) {
     const pokemonResume = pokeData[1];
     const flavor_text_entries = pokemonSpecie.flavor_text_entries;
   
-    pokemon["name"] = pokemonResume.name;
     pokemon["description"] =getDescriptionOfPokemon(flavor_text_entries);
     pokemon["sprite"] = pokemonResume.sprites.front_default;
     pokemon["types"] = getTypesOfPokemon(pokemonResume);
@@ -61,7 +60,7 @@ export function parseDataPokemon(pokeData) {
 
   export const GENERATION ={
     ONE:{
-      "start":1,
+      "start":0,
       "end": 151,
       "generation":"generation-i"
     },

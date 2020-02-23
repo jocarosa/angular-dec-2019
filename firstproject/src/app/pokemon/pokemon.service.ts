@@ -19,6 +19,11 @@ export class PokemonService {
     return forkJoin([pokemonSpecie, pokemonResume]);
   }
 
+  getPokemonListByOffset(offset):Observable<any>{
+    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=15`;
+    return this.http.get(url);
+  }
+
   getEvolutionChainByName(url: string) {
     let pokemonNamesFromChain = [];
 

@@ -70,7 +70,7 @@ export class PokemonComponent implements OnInit {
   ngOnInit() {
 
     this.genera = {
-      start: 1, end: 150, generation: "generation-i"
+      start: 0, end: 150, generation: "generation-i"
     };
 
     this.findPokemonsByGenerationAndOffset(GENERATION.ONE)
@@ -101,9 +101,9 @@ export class PokemonComponent implements OnInit {
 
   allPokemonData = [];
   pikachuLoading;
-
+   
   findPokemonsByGenerationAndOffset(generacion) {
-    
+
     if (generacion.menu) {
       this.genera = generacion; // set size paginator by the number of pokemomns
     }
@@ -111,11 +111,30 @@ export class PokemonComponent implements OnInit {
     this.startAnimation();
     let offset = generacion.start;
     this.pikachuLoading = true;
-    for (let i = 1; i < 16; i++) {  //paginator next 10
-      this.savesPokemon(generacion.generation, offset);
-      offset++;
-    }
-  }
+    let pokemonList=[];
+    let p = [];
+    this.pokemonService.getPokemonListByOffset(offset).subscribe(
+      {
+        next:pokemon=>{
+         pokemon.results.map(s=>{
+            const pokemonNo = s.url.split("pokemon")[1].replace("/","").replace("/","");
+            pokemonList.push({
+              name : s.name,
+              sprite : this.pokemonService.getSpritePokemonByNo(pokemonNo),
+              no:pokemonNo,
+              isValid : pokemonNo <= generacion.end
+            });
+          });
+
+          p[offset] = pokemonList;
+          this.pikachuLoading = false;
+          this.pokeke = p[offset];
+        },complete(){
+          
+        }
+      }
+    );
+   }
   private savesPokemon(generation, pokemonNo) {
 
     const pokemonSpecieAndDescription = getPokemonSpecieAndDescriptionByNo(pokemonNo, this.pokemonService);
