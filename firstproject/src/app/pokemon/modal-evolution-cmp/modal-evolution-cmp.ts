@@ -1,8 +1,7 @@
 import { Component, OnInit,TemplateRef,ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PokemonService } from '@pokemon/pokemon.service';
-import { getPokemonSpecieAndDescriptionByNo,
-  parseDataPokemon,descriptioncolors } from '@pokemon/shared'
+import { parseDataPokemon,descriptioncolors } from '@pokemon/shared'
 
 @Component({
   selector: 'modal-evolution-cmp',
@@ -22,47 +21,33 @@ export class EvolutionModalComponent implements OnInit {
 
   ngOnInit() {
   }
-  pokemonChains=[];
-  pokemons;
-  pokemon;
+  pokemon=[];
   
-  openModal(pokemon,pokemons?){
-    this.pokemons = pokemons;
-    this.pokemon=pokemon;
-    this.pokemon["spriteAnimated"]=`https://img.pokemondb.net/sprites/black-white/anim/normal/${pokemon.name}.gif`;
+  openModal(pokemon){
     this.modalRef = this.modalService.show(this.evolutionChainTemplate);
-    const pokemonChainUrl=pokemon["chain_url"];
-    if(this.pokemonChains[pokemonChainUrl] == null ){
-      this.pokemonChains[pokemonChainUrl]=[];
-       this.savesEvolutionChain(pokemonChainUrl);
-    }
+    this.getPokemonResume(pokemon.name);
   }
 
-private savesEvolutionChain(pokemonChainUrl:string){  
-    this.pokemonService.getEvolutionChainByName(pokemonChainUrl).subscribe(pokemonName=>{
-      const pokemonFromCache = this.getPokemonFromCache(pokemonName)
-      if(pokemonFromCache){
-        this.pokemonChains[pokemonChainUrl].push(pokemonFromCache);
-      }else{
-        const pokemondata = getPokemonSpecieAndDescriptionByNo(pokemonName,this.pokemonService);
-        pokemondata.subscribe(d=>{
-          this.pokemonChains[pokemonChainUrl].push(parseDataPokemon(d));
-        })
-      }
-    })
-  }
-
-  getPokemonChain(pokemon){
-    const pokemonChainUrl=pokemon["chain_url"];
-    return this.pokemonChains[pokemonChainUrl];
-  }
   changePokemonChain(pokemon){
     this.pokemon = pokemon;
+    this.getPokemonChain();
   }
 
-  private getPokemonFromCache(pokemonName){
-    return  this.pokemons.find(x=>x.name == pokemonName)
+  getPokemonResume(pokemonName){
+    this.pokemonService.getPokemonTypeAndDescriptionByName(pokemonName).subscribe(pokemonData=>{
+     this.pokemon = parseDataPokemon(pokemonData);
+     this.getPokemonChain();
+    });
   }
-
-
+  getPokemonChain(){
+    let m=[];
+    this.pokemonService.getEvolutionChain(this.pokemon["chain_url"]).subscribe(pokemonName=>{
+      this.pokemonService.getPokemonTypeAndDescriptionByName(pokemonName).subscribe(pokemonData=>{
+        m.push(
+          parseDataPokemon(pokemonData)
+       );
+       this.pokemon["pokemonChain"] = m;
+      })
+    });
+  }
 }

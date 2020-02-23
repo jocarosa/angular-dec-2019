@@ -5,14 +5,21 @@
     </button>   
     <img class="pokemonImg" src="{{pokemon.spriteAnimated}}">
     <h4 style="text-align: center;color:black" class="modal-title pull-left">{{pokemon.name | titlecase}}</h4>
+
     <div class="pokemonDescription">
+          
+    <!--POKEMON DESCRIPTION-->
       <div [style.background-color]="descriptioncolors[type]" class="pokemonType" *ngFor="let type of pokemon.types">{{type}}</div>
+          
+    <!--POKEMON DESCRIPTION-->
       <div class="">{{pokemon.description}}</div>
+     
+     <!--POKEMON CHAIN-->
       <div style="background-color: #f5f6fa; border-radius: 12px;" class="modal-body">
-        <div *ngIf=" getPokemonChain(pokemon).length > 1">
+        <div *ngIf="pokemon.pokemonChain">
           <h4 class="modal-title pull-left">Evolution Chain</h4>
-          <div class="chainStyle" *ngFor="let pokemonFromChain of getPokemonChain(pokemon)">
-            <a [routerLink]="" (click)="changePokemonChain(pokemonFromChain)"><img src="{{pokemonFromChain.sprite}}"></a>
+          <div class="chainStyle" *ngFor="let pokemonFromChain of pokemon.pokemonChain">
+            <a [routerLink]="" (click)="changePokemonChain(pokemonFromChain)"><img src="{{pokemonFromChain.spriteAnimated}}"></a>
             {{pokemonFromChain.name}}
           </div>
         </div>

@@ -12,19 +12,21 @@ export class PokemonService {
   constructor(private http: HttpClient) { }
 
 
-  getPokemonDataByNo(pokemonNo: string): Observable<any> {
-    const pokemonName = pokemonNo;
+  getPokemonTypeAndDescriptionByName(pokemonName: string): Observable<any> {
     const pokemonSpecie = this.getPokemonSpecieByName(pokemonName);
     const pokemonResume = this.getPokemonResumeByName(pokemonName);
     return forkJoin([pokemonSpecie, pokemonResume]);
   }
-
+  getSpritePokemonByNo(no: string) {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${no}.png`
+  }
   getPokemonListByOffset(offset):Observable<any>{
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=15`;
     return this.http.get(url);
   }
-
-  getEvolutionChainByName(url: string) {
+  
+  getEvolutionChain(url: string) {
+    debugger
     let pokemonNamesFromChain = [];
 
     return this.http.get(url)
@@ -68,9 +70,7 @@ export class PokemonService {
       }
     }
   }
-  getSpritePokemonByNo(no: string) {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${no}.png`
-  }
+ 
 
 
 }

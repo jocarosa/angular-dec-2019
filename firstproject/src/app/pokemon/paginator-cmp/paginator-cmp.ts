@@ -22,7 +22,7 @@ export class PaginatorPokemonComponent implements OnInit {
     //  e.page = 1;
       //this.currentPage = 1;
     //}
-    
+ 
     let offset = e.page * e.itemsPerPage + this.generac.start - e.itemsPerPage;
     this.next.emit(
       { start: offset,

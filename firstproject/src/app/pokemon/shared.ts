@@ -9,9 +9,10 @@ export function parseDataPokemon(pokeData) {
     const pokemonSpecie = pokeData[0];
     const pokemonResume = pokeData[1];
     const flavor_text_entries = pokemonSpecie.flavor_text_entries;
-  
+    const name = pokemonResume.name;
+    pokemon["name"]= name;
+    pokemon["spriteAnimated"]=`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`;
     pokemon["description"] =getDescriptionOfPokemon(flavor_text_entries);
-    pokemon["sprite"] = pokemonResume.sprites.front_default;
     pokemon["types"] = getTypesOfPokemon(pokemonResume);
     pokemon["generation"] = pokemonSpecie.generation.name;
     pokemon["chain_url"] = pokemonSpecie.evolution_chain.url;
@@ -65,32 +66,32 @@ export function parseDataPokemon(pokeData) {
       "generation":"generation-i"
     },
     TWO:{
-      "start":152,
+      "start":151,
       "end": 251,
       "generation":"generation-ii"
     },
     THREE:{
-      "start":252,
+      "start":251,
       "end": 386,
       "generation":"generation-iii"
     },
     FOUR:{
-      "start":387,
+      "start":386,
       "end": 493,
       "generation":"generation-iv"
     },
     FIVE:{
-      "start":494,
+      "start":493,
       "end": 649,
       "generation":"generation-v"
     },
     SIX:{
-      "start":650,
+      "start":649,
       "end": 721,
       "generation":"generation-vi"
     },
     SEVEN:{
-      "start":722,
+      "start":721,
       "end": 803,
       "generation":"generation-vii"
     }

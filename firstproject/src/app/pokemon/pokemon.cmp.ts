@@ -3,9 +3,7 @@ import { PokemonService } from '@pokemon/pokemon.service';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { rubberBandAnimation } from 'angular-animations';
 import { GENERATION, descriptioncolors } from '@pokemon/shared';
-import { forkJoin } from 'rxjs';
 import { EvolutionModalComponent } from './modal-evolution-cmp/modal-evolution-cmp';
-import { getPokemonSpecieAndDescriptionByNo, parseDataPokemon } from './shared'
 
 @Component({
   selector: 'app-pokemon',
@@ -99,7 +97,6 @@ export class PokemonComponent implements OnInit {
     }, 1);
   }
 
-  allPokemonData = [];
   pikachuLoading;
    
   findPokemonsByGenerationAndOffset(generacion) {
@@ -109,56 +106,37 @@ export class PokemonComponent implements OnInit {
     }
     this.pokemons = [];
     this.startAnimation();
-    let offset = generacion.start;
     this.pikachuLoading = true;
-    let pokemonList=[];
-    let p = [];
+    let offset = generacion.start;
     this.pokemonService.getPokemonListByOffset(offset).subscribe(
       {
         next:pokemon=>{
-         pokemon.results.map(s=>{
-            const pokemonNo = s.url.split("pokemon")[1].replace("/","").replace("/","");
-            pokemonList.push({
-              name : s.name,
-              sprite : this.pokemonService.getSpritePokemonByNo(pokemonNo),
-              no:pokemonNo,
-              isValid : pokemonNo <= generacion.end
-            });
-          });
-
-          p[offset] = pokemonList;
-          this.pikachuLoading = false;
-          this.pokeke = p[offset];
-        },complete(){
-          
+          this.savesPokemon(generacion,pokemon);
         }
       }
     );
    }
-  private savesPokemon(generation, pokemonNo) {
 
-    const pokemonSpecieAndDescription = getPokemonSpecieAndDescriptionByNo(pokemonNo, this.pokemonService);
-    forkJoin(pokemonSpecieAndDescription).subscribe(
-      {
-        next: d => {
-          const pokemon = parseDataPokemon(d[0]);
-          if (this.pokemons.length < 15
-          ) {
-            pokemon["isValid"] = generation == pokemon["generation"];
-            this.pokemons.push(pokemon);
-          }
+  private savesPokemon(generation, pokemon) {
+   
+    let pokemonList=[];
 
-          if (this.pokemons.length == 15) {
-            this.pokeke = this.pokemons;
-            this.pikachuLoading = false;
-          }
-        }
-      }
-    );
+    pokemon.results.map(currentPokemon=>{
+      const pokemonNo = currentPokemon.url.split("pokemon")[1].replace("/","").replace("/","");
+      pokemonList.push({
+        name : currentPokemon.name,
+        sprite : this.pokemonService.getSpritePokemonByNo(pokemonNo),
+        no:pokemonNo,
+        isValid : pokemonNo <= generation.end
+      });
+    });
+
+    this.pikachuLoading = false;
+    this.pokeke = pokemonList;
   }
 
   openModal(pokemon) {
-    this.evolutionModal.openModal(pokemon, this.pokemons);
+    this.evolutionModal.openModal(pokemon);
   }
 
 
