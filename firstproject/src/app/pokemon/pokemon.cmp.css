@@ -1,5 +1,7 @@
-div{
-    /* border:1px solid red; */
+@media screen and (min-width: 600px) {
+    .container {
+      width:900px !important;
+    }
 }
 .mainPokemonContainer{
    
