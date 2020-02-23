@@ -39,8 +39,10 @@ export class EvolutionModalComponent implements OnInit {
      this.getPokemonChain();
     });
   }
+  
   getPokemonChain(){
     let m=[];
+    this.pokemon["pokemonChain"]=[];
     this.pokemonService.getEvolutionChain(this.pokemon["chain_url"]).subscribe(pokemonName=>{
       this.pokemonService.getPokemonTypeAndDescriptionByName(pokemonName).subscribe(pokemonData=>{
         m.push(
